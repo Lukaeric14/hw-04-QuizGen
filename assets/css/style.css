@@ -1,0 +1,12 @@
+#container {
+    display: flex;
+    flex-direction: row
+}
+
+#quiz {
+    width: 50%;
+}
+
+#leaderboards {
+    width: 50%;
+}
