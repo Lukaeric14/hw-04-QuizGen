@@ -1,6 +1,7 @@
 #container {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    width:auto;
 }
 
 #quiz {
@@ -8,5 +9,55 @@
 }
 
 #leaderboards {
+    display: flex;
+    flex-direction: column;
     width: 50%;
+}
+#pleaderboards {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+#lbh1 {
+    width: 100%;
+}
+
+#trialNumber {
+    width: 50%;
+}
+
+#score {
+    width: 50%;
+}
+
+body {
+    background-color: #efefef;
+}
+
+nav {
+    margin-top: 0px;
+    height: 20px;
+    background-color: #ff3b3f;
+}
+
+#quiz-question-container {
+    margin: 5%;
+    text-align: center;
+    background-color: #CAEBF2;
+}
+
+.q {
+    font-size: larger;
+    font-weight: 900;
+    margin: 10px;
+    padding: 5px;
+}
+
+.answer {
+    padding: 5px;
+}
+
+.answer:hover {
+    color: #ff3b3f;
 }

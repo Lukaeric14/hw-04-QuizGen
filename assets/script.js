@@ -19,42 +19,42 @@ var trialNum = 0;
 var questionCount =-1;
 var questionAttempted = 0;
 
-var questionStorage = [
+const questionStorage = [
     {
-    question: "this is my first question",
-    rightAnswer:"this is the correct answer",
-    answerAlt1: "this is the wrong answer",
-    answerAlt2: "this is the wrong answer",
-    answerAlt3: "this is the wrong answer",
-    answerAlt4: "this is the correct answer",
+    question: "Which character is used to indicate an end tag?",
+    rightAnswer:"/",
+    answerAlt1: "^",
+    answerAlt2: "*",
+    answerAlt3: "/",
+    answerAlt4: "<",
 },{
-    question: "this is my second question",
-    rightAnswer:"this is the correct answer",
-    answerAlt1: "this is the correct answer",
-    answerAlt2: "this is the wrong answer",
-    answerAlt3: "this is the wrong answer",
-    answerAlt4: "this is the wrong answer",
+    question: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    rightAnswer:"alt",
+    answerAlt1: "alt",
+    answerAlt2: "longdesc",
+    answerAlt3: "src",
+    answerAlt4: "title",
 },{
-    question: "this is my third question",
-    rightAnswer:"this is the correct answer",
-    answerAlt1: "this is the correct answer",
-    answerAlt2: "this is the wrong answer",
-    answerAlt3: "this is the wrong answer",
-    answerAlt4: "this is the wrong answer",
+    question: "In HTML, onblur and onfocus are:",
+    rightAnswer:"Event attributes",
+    answerAlt1: "Style attributes",
+    answerAlt2: "Event attributes",
+    answerAlt3: "HTML elements",
+    answerAlt4: "hover elements",
 },{
-    question: "this is my fourth question",
-    rightAnswer:"this is the correct answer",
-    answerAlt1: "this is the wrong answer",
-    answerAlt2: "this is the wrong answer",
-    answerAlt3: "this is the correct answer",
-    answerAlt4: "this is the wrong answer",
+    question: "In HTML, which attribute is used to specify that an input field must be filled out?",
+    rightAnswer:"required",
+    answerAlt1: "formvalidate",
+    answerAlt2: "placeholder",
+    answerAlt3: "required",
+    answerAlt4: "validate",
 },{
-    question: "this is my fifth question",
-    rightAnswer:"this is the correct answer",
-    answerAlt1: "this is the wrong answer",
-    answerAlt2: "this is the correct answer",
-    answerAlt3: "this is the wrong answer",
-    answerAlt4: "this is the wrong answer",
+    question: "Which input type defines a slider control?",
+    rightAnswer:"slider",
+    answerAlt1: "range",
+    answerAlt2: "controls",
+    answerAlt3: "search",
+    answerAlt4: "slider",
 }    
 ];
 
@@ -82,7 +82,6 @@ function writeQuestion() {
     questionCount++
     if (questionCount === 5) {
         seconds = 1;
-        alert("Quiz is finished");
         postGrade(score,questionAttempted);
     } else {
     var newQuestionPosition = questionCount
@@ -91,7 +90,7 @@ function writeQuestion() {
     // creating element for question & appendings 
     var newQuestion = document.createElement("div");
     newQuestion.textContent = questionStorage[newQuestionPosition].question;
-    newQuestion.setAttribute("id","q");
+    newQuestion.setAttribute("class","q");
     document.getElementById("quiz-question-container").appendChild(newQuestion);
 
 // to create elements for questions & answers & appending 
@@ -164,15 +163,18 @@ function postGrade(score, questionAttempted) {
     var finalScore = `${score}/${questionAttempted}`;
 
     var newUserAttempt = document.createElement("p");
+    newUserAttempt.setAttribute("id","trialNumber");
     newUserAttempt.textContent = `Trial Number ${trialNum}`;
-    document.getElementById("leaderboards").appendChild(newUserAttempt);
+    document.getElementById("pleaderboards").appendChild(newUserAttempt);
 
     var newScoreAttempt = document.createElement("p");
+    newScoreAttempt.setAttribute("id","score");
     newScoreAttempt.textContent = finalScore;
-    document.getElementById("leaderboards").appendChild(newScoreAttempt);
+    document.getElementById("pleaderboards").appendChild(newScoreAttempt);
 
     var resetButton = document.createElement("button");
     resetButton.setAttribute('class','resetbutton');
+    resetButton.textContent = "reset";
     document.getElementById("buttons").appendChild(resetButton);
 
     document.querySelector(".resetbutton").addEventListener("click", () => {
@@ -185,9 +187,17 @@ function resetQuiz() {
     questionAttempted = 0;
     score = 0;
 
-    for (var i=0;i <25;i++){
-    var forremove = document.getElementById("p");
-    forremove.remove();
+    const removeanswers = document.getElementsByClassName("answer");
+    while(removeanswers.length > 0){
+        removeanswers[0].parentNode.removeChild(removeanswers[0]);
+    }
+    const removequestions = document.getElementsByClassName("q");
+    while(removequestions.length > 0){
+        removequestions[0].parentNode.removeChild(removequestions[0]);
+    }
+    const removeresetbuttom = document.getElementsByClassName("resetbutton");
+    while(removeresetbuttom.length > 0){
+        removeresetbuttom[0].parentNode.removeChild(removeresetbuttom[0]);
     }
 }
 
